@@ -7,6 +7,17 @@ def check():
         box.showerror('No Support', 'File type not supported')
     else:
         box.showinfo('Loading...', 'Reading File...')
+        try:
+            df = pd.read_csv(entry.get())
+        except:
+            try:
+                df = pd.read_excel(entry.get())
+            except:
+                box.showerror('No File', 'File not found. Please try again.')
+            else:
+                box.showinfo('Success', 'Success!')
+        else:
+            box.showinfo('Success', 'Success!')
 def file():
     global window2, button4, frame, entry
     window2 = tk.Tk()
