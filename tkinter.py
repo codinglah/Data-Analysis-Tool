@@ -6,7 +6,6 @@ def check():
     if '.csv' not in entry.get() and '.xlsx' not in entry.get() and '.xls' not in entry.get():
         box.showerror('No Support', 'File type not supported')
     else:
-        box.showinfo('Loading...', 'Reading File...')
         try:
             df = pd.read_csv(entry.get())
         except:
