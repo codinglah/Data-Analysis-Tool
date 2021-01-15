@@ -17,7 +17,6 @@ def check():
                 box.showinfo('Success', 'Success!')
         else:
             box.showinfo('Success', 'Success!')
-        
 def file():
     global window2, button4, frame, entry
     window2 = tk.Tk()
