@@ -17,6 +17,7 @@ def check():
                 box.showinfo('Success', 'Success!')
         else:
             box.showinfo('Success', 'Success!')
+        mean = df.mean()
 def file():
     global window2, button4, frame, entry
     window2 = tk.Tk()
