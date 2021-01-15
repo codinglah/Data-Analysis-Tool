@@ -17,7 +17,7 @@ def check():
                 box.showinfo('Success', 'Success!')
         else:
             box.showinfo('Success', 'Success!')
-        mean = df.mean()
+        
 def file():
     global window2, button4, frame, entry
     window2 = tk.Tk()
@@ -29,18 +29,30 @@ def file():
     entry = tk.Entry(frame)
     frame.pack(side = tk.LEFT)
     entry.pack(side = tk.LEFT)
+def mean():
+    global type    
+    type = 'mean'
+    file()
+def median():
+    global type
+    type = 'median'
+    file()
+def mode():
+    global type
+    type = 'mode'
+    file()
 window = tk.Tk()
 window.title('Select Calculation')
 label = tk.Label(window, text = 'Data Analysis Tool v1.0.0-a1')
 label.grid(row = 1, column = 4)
 button1 = tk.Button(window)
-button1.configure(text = 'Mean', command = file)
+button1.configure(text = 'Mean', command = mean)
 button1.grid(row = 2, column = 1)
 button2 = tk.Button(window)
-button2.configure(text = 'Median', command = file)
+button2.configure(text = 'Median', command = median)
 button2.grid(row = 2, column = 4)
 button3 = tk.Button(window)
-button3.configure(text = 'Mode', command = file)
+button3.configure(text = 'Mode', command = mode)
 button3.grid(row = 2, column = 8)
 window.mainloop()
 window2.mainloop()
