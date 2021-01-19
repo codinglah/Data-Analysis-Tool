@@ -17,9 +17,9 @@ def check():
             else:
                 showinfo('Success', 'Success!')
                 if types == 'plain':
-                    p()
-                else:
                     t()
+                else:
+                    p()
         else:
             showinfo('Success', 'Success!')
             if types == 'plain':
@@ -28,7 +28,7 @@ def check():
                 p()
 def file():
     global window2, button4, frame, entry
-    window2 = tk.Tk()
+    window2 = tk.Toplevel()
     window2.title('Enter Directory')
     window2.resizable(0, 0)
     button4 = tk.Button(window2)
@@ -80,7 +80,7 @@ def pie():
         showerror('No Support', 'Oops! There appears to be unsupported data in your dataset. Please remove them and try again.')
 def t():
     global window3, button5, button6, button8, button9
-    window3 = tk.Tk()
+    window3 = tk.Toplevel()
     window3.title('Select Type')
     window3.resizable(0, 0)
     label2 = tk.Label(window3, text = 'Select Type of Graph:')
@@ -99,7 +99,7 @@ def t():
     button9.grid(row = 2, column = 16)
 def p():
     global window4
-    window4 = tk.Tk()
+    window4 = tk.Toplevel()
     window4.title((types, 'calculation results'))
     label3 = tk.Label(window4, text = (df.columns.values, '\n\n', df.mean()))
     label3.grid(row = 1)
