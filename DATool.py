@@ -77,15 +77,6 @@ def bar():
     except ValueError:
         showerror('No Support', 'Oops! There appears to be unsupported data in your dataset. Please remove them and try again.')
 def hist():
-    global window5
-    window5 = tk.Tk()
-    window5.resizable(0, 0)
-    label2 = tk.Label(window5, text = "Please enter comma-separated columns or 'NIL' for all columns:")
-    label2.grid(row = 1, column = 3)
-    frame2 = tk.Frame(window5)
-    entry2 = tk.Entry(frame)
-    frame2.pack(side = tk.LEFT)
-    entry2.pack(side = tk.LEFT)
     try:
         values = list(entry2.get().split(','))
         if len(values) == len(list(df.columns.values)):
@@ -93,19 +84,10 @@ def hist():
                 df[value].hist()
         else:
             df.hist()
-        plt.show()
+    plt.show()
     except ValueError:
         showerror('No Support', 'Oops! There appears to be unsupported data in your dataset. Please remove them and try again.')
 def pie():
-    global window5
-    window5 = tk.Tk()
-    window5.resizable(0, 0)
-    label2 = tk.Label(window5, text = "Please enter comma-separated labels or 'NIL' for no label:")
-    label2.grid(row = 1, column = 3)
-    frame2 = tk.Frame(window5)
-    entry2 = tk.Entry(frame)
-    frame2.pack(side = tk.LEFT)
-    entry2.pack(side = tk.LEFT)
     try:
         values = list(entry2.get().split(','))
         if len(values) == len(list(df.columns.values)):
@@ -117,6 +99,29 @@ def pie():
         plt.show()
     except ValueError:
         showerror('No Support', 'Oops! There appears to be unsupported data in your dataset. Please remove them and try again.')
+def columns():
+    global window5, entry2
+    window5 = tk.Tk()
+    window5.resizable(0, 0)
+    label2 = tk.Label(window5, text = "Please enter comma-separated labels or 'NIL' for no label:")
+    label2.pack()
+    frame2 = tk.Frame(window5)
+    entry2 = tk.Entry(frame2)
+    frame2.pack(side = tk.LEFT)
+    entry2.pack(side = tk.LEFT)
+    if types == "line":
+        button10 = tk.Button(window5)
+        button10.configure(text = "Choose", command = line)
+    elif types == "bar":
+        button10 = tk.Button(window5)
+        button10.configure(text = "Choose", command = bar)
+    elif types == "hist":
+        button10 = tk.Button(window5)
+        button10.configure(text = "Choose", command = hist)
+    else:
+        button10 = tk.Button(window5)
+        button10.configure(text = "Choose", command = pie)
+    button10.pack(side = tk.RIGHT)
 def t():
     global window3, button5, button6, button8, button9
     window3 = tk.Tk()
@@ -125,16 +130,16 @@ def t():
     label2 = tk.Label(window3, text = 'Select Type of Graph:')
     label2.grid(row = 1, column = 10)
     button5 = tk.Button(window3)
-    button5.configure(text = 'Line', command = line)
+    button5.configure(text = 'Line', command = columns)
     button5.grid(row = 2, column = 1)
     button6 = tk.Button(window3)
-    button6.configure(text = 'Bar', command = bar)
+    button6.configure(text = 'Bar', command = columns)
     button6.grid(row = 2, column = 4)
     button8 = tk.Button(window3)
-    button8.configure(text = 'Hist', command = hist)
+    button8.configure(text = 'Hist', command = columns)
     button8.grid(row = 2, column = 12)
     button9 = tk.Button(window3)
-    button9.configure(text = 'Pie', command = pie)
+    button9.configure(text = 'Pie', command = columns)
     button9.grid(row = 2, column = 16)
 def p():
     global window4
