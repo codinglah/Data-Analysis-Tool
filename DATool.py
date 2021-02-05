@@ -56,25 +56,64 @@ def plain():
     file()
 def line():
     try:
-        df.plot()
+        values = list(entry2.get().split(','))
+        if len(values) == len(list(df.columns.values)):
+            for value in values:
+                df[value].plot()
+        else:
+            df.plot()
         plt.show()
     except ValueError:
         showerror('No Support', 'Oops! There appears to be unsupported data in your dataset. Please remove them and try again.')
 def bar():
     try:
-        df.plot(kind = 'bar')
+        values = list(entry2.get().split(','))
+        if len(values) == len(list(df.columns.values)):
+            for value in values:
+                df[value].plot(kind = "bar")
+        else:
+            df.plot(kind = "bar")
         plt.show()
     except ValueError:
         showerror('No Support', 'Oops! There appears to be unsupported data in your dataset. Please remove them and try again.')
 def hist():
+    global window5
+    window5 = tk.Tk()
+    window5.resizable(0, 0)
+    label2 = tk.Label(window5, text = "Please enter comma-separated columns or 'NIL' for all columns:")
+    label2.grid(row = 1, column = 3)
+    frame2 = tk.Frame(window5)
+    entry2 = tk.Entry(frame)
+    frame2.pack(side = tk.LEFT)
+    entry2.pack(side = tk.LEFT)
     try:
-        df.hist()
+        values = list(entry2.get().split(','))
+        if len(values) == len(list(df.columns.values)):
+            for value in values:
+                df[value].hist()
+        else:
+            df.hist()
         plt.show()
     except ValueError:
         showerror('No Support', 'Oops! There appears to be unsupported data in your dataset. Please remove them and try again.')
 def pie():
+    global window5
+    window5 = tk.Tk()
+    window5.resizable(0, 0)
+    label2 = tk.Label(window5, text = "Please enter comma-separated labels or 'NIL' for no label:")
+    label2.grid(row = 1, column = 3)
+    frame2 = tk.Frame(window5)
+    entry2 = tk.Entry(frame)
+    frame2.pack(side = tk.LEFT)
+    entry2.pack(side = tk.LEFT)
     try:
-        plt.pie(df, labels = df.columns.values)
+        values = list(entry2.get().split(','))
+        if len(values) == len(list(df.columns.values)):
+            plt.pie(df, labels = values)
+        elif entry2.get() == "NIL":
+            plt.pie(df)
+        else:
+            plt.pie(df, labels = df.columns.values)
         plt.show()
     except ValueError:
         showerror('No Support', 'Oops! There appears to be unsupported data in your dataset. Please remove them and try again.')
@@ -114,7 +153,7 @@ def p():
 window = tk.Tk()
 window.title('Select Calculation')
 window.resizable(0, 0)
-label = tk.Label(window, text = 'Data Analysis Tool v1.0.0-a1')
+label = tk.Label(window, text = 'Data Analysis Tool v1.0.0-a3')
 label.grid(row = 1, column = 6)
 button1 = tk.Button(window)
 button1.configure(text = 'Mean', command = mean)
@@ -132,9 +171,10 @@ window.mainloop()
 try:
     if types:
         window2.mainloop()
-    if types == 'plain':
+    elif types == 'plain':
         window4.mainloop()
     else:
         window3.mainloop()
+        window5.mainloop()
 except:
     pass
