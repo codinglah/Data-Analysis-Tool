@@ -1,2 +1,2 @@
 # Data-Analysis-Tool v1.0.0
-Well, this is kinda cancelled, so..just enjoy this final release. I will not be providing support for this.
+## Alright, so this is back on track! I will be working on it! Look out for the next version!
