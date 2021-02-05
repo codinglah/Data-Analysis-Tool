@@ -84,7 +84,7 @@ def hist():
                 df[value].hist()
         else:
             df.hist()
-    plt.show()
+        plt.show()
     except ValueError:
         showerror('No Support', 'Oops! There appears to be unsupported data in your dataset. Please remove them and try again.')
 def pie():
