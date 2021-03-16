@@ -63,8 +63,8 @@ def line():
         else:
             df.plot()
         plt.show()
-    except ValueError:
-        showerror('No Support', 'Oops! There appears to be unsupported data in your dataset. Please remove them and try again.')
+    except ValueError as msg:
+        showerror('No Support', ('Oops! There appears to be unsupported data in your dataset. Please remove them and try again.\n\nOr, raise an issue on our GitHub repository at https://github.com/codinglah/data-analysis-tool/ and paste the following error:\n', msg))
 def bar():
     try:
         values = list(entry2.get().split(','))
@@ -74,8 +74,8 @@ def bar():
         else:
             df.plot(kind = "bar")
         plt.show()
-    except ValueError:
-        showerror('No Support', 'Oops! There appears to be unsupported data in your dataset. Please remove them and try again.')
+    except ValueError as msg:
+        showerror('No Support', ('Oops! There appears to be unsupported data in your dataset. Please remove them and try again.\n\nOr, raise an issue on our GitHub repository at https://github.com/codinglah/data-analysis-tool/ and paste the following error:\n', msg))
 def hist():
     try:
         values = list(entry2.get().split(','))
@@ -85,8 +85,8 @@ def hist():
         else:
             df.hist()
         plt.show()
-    except ValueError:
-        showerror('No Support', 'Oops! There appears to be unsupported data in your dataset. Please remove them and try again.')
+    except ValueError as msg:
+        showerror('No Support', ('Oops! There appears to be unsupported data in your dataset. Please remove them and try again.\n\nOr, raise an issue on our GitHub repository at https://github.com/codinglah/data-analysis-tool/ and paste the following error:\n', msg))
 def pie():
     try:
         values = list(entry2.get().split(','))
@@ -97,8 +97,8 @@ def pie():
         else:
             plt.pie(df, labels = df.columns.values)
         plt.show()
-    except ValueError:
-        showerror('No Support', 'Oops! There appears to be unsupported data in your dataset. Please remove them and try again.')
+    except ValueError as msg:
+        showerror('No Support', ('Oops! There appears to be unsupported data in your dataset. Please remove them and try again.\n\nOr, raise an issue on our GitHub repository at https://github.com/codinglah/data-analysis-tool/ and paste the following error:\n', msg))
 def columns():
     global window5, entry2
     window5 = tk.Tk()
@@ -109,17 +109,14 @@ def columns():
     entry2 = tk.Entry(frame2)
     frame2.pack(side = tk.LEFT)
     entry2.pack(side = tk.LEFT)
+    button10 = tk.Button(window5)
     if types == "line":
-        button10 = tk.Button(window5)
         button10.configure(text = "Choose", command = line)
     elif types == "bar":
-        button10 = tk.Button(window5)
         button10.configure(text = "Choose", command = bar)
     elif types == "hist":
-        button10 = tk.Button(window5)
         button10.configure(text = "Choose", command = hist)
     else:
-        button10 = tk.Button(window5)
         button10.configure(text = "Choose", command = pie)
     button10.pack(side = tk.RIGHT)
 def t():
@@ -145,15 +142,12 @@ def p():
     global window4
     window4 = tk.Tk()
     window4.title((types, 'calculation results'))
-    try:
-        if types == 'mean':
-            label3 = tk.Label(window4, text = (df.columns.values, '\n\n', df.mean()))
-        elif types == 'median':
-            label3 = tk.Label(window4, text = (df.columns.values, '\n\n', df.median()))
-        else:
-            label3 = tk.Label(window4, text = (df.columns.values, '\n\n', df.mode()))
-    except:
-        showerror('No Support', 'Oops! There appears to be unsupported data in your dataset. Please remove them and try again.')
+    if types == 'mean':
+        label3 = tk.Label(window4, text = (df.columns.values, '\n\n', df.mean()))
+    elif types == 'median':
+        label3 = tk.Label(window4, text = (df.columns.values, '\n\n', df.median()))
+    else:
+        label3 = tk.Label(window4, text = (df.columns.values, '\n\n', df.mode()))
     label3.grid(row = 1)
 window = tk.Tk()
 window.title('Select Calculation')
